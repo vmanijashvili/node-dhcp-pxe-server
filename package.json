@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/vmanijashvili/node-dhcp-pxe-server/issues"
   },
-  "homepage": "https://github.com/vmanijashvili/node-dhcp-pxe-server#readme"
+  "homepage": "https://github.com/vmanijashvili/node-dhcp-pxe-server#readme",
+  "devDependencies": {
+    "@types/node": "^14.0.14"
+  }
 }
