@@ -1,4 +1,3 @@
-import {MessageType} from "../interfaces/message-type";
 import {HardwareAddress} from "../interfaces/hardware-address";
 import {DhcpMessage} from "../interfaces/dhcp-message";
 
@@ -36,10 +35,11 @@ export class DhcpMessageParser {
 		this.message.magic = msg.readUInt32BE(236);
 		let offset = 240;
 		let code = 0;
+		this.message.options = {};
 		while (code != 255 && offset < msg.length) {
 			code = msg.readUInt8(offset++);
 			let len = 0;
-			console.log("code: ", code, len);
+			//console.log("code: ", code, len);
 			switch (code) {
 				case 0: continue;   // pad
 				case 255: break;    // end
@@ -71,6 +71,11 @@ export class DhcpMessageParser {
 					this.message.options.bootFileSize = msg.readUInt16BE(offset);
 					offset += len;
 				break;
+				case 50: // Requested IP Address
+					len = msg.readUInt8(offset++);
+					this.message.options.requestedIpAddress = this.readIp(msg, offset);
+					offset += len;
+				break;
 				case 51: // IP Address Lease Time
 					len = msg.readUInt8(offset++);
 					this.message.options.ipAddressLeaseTime = msg.readUInt32BE(offset);
@@ -99,7 +104,7 @@ export class DhcpMessageParser {
 					this.message.options.maximumMessageSize = msg.readUInt16BE(offset);
 					offset += len;
 				break;
-				case 60:
+				case 60: // Vendor Class Identifier
 					len = msg.readUInt8(offset++);
 					this.message.options.vendorClassIdentifier = this.readString(msg, offset, len);
 					offset += len;
@@ -126,7 +131,7 @@ export class DhcpMessageParser {
 				break;
 				default:
 					len = msg.readUInt8(offset++);
-					console.log('unknown DHCP option ', code, len);
+					//console.log('unknown DHCP option ', code, len);
 					offset += len;
 				break;
 			}
@@ -138,13 +143,13 @@ export class DhcpMessageParser {
 	}
 
 	readIp(msg: Buffer, offset: number): string {
-		if (0 === msg.readUInt8(offset)) return undefined;
+		if (0 === msg.readUInt8(offset))
+			return undefined;
 		return '' +
 			msg.readUInt8(offset++) + '.' +
 			msg.readUInt8(offset++) + '.' +
 			msg.readUInt8(offset++) + '.' +
-			msg.readUInt8(offset++)
-		;
+			msg.readUInt8(offset++);
 	}
 
 	readHWAddress(msg: Buffer): HardwareAddress {

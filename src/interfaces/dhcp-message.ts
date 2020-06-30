@@ -6,7 +6,7 @@ import {MessageType} from "./message-type";
 
 export interface DhcpMessage {
 	bootMessageType?: BootMessageType;
-	messageType: MessageType;
+	messageType?: MessageType;
 	hLen?: number;
 	hops?: number;
 	xid?: number;
@@ -20,5 +20,5 @@ export interface DhcpMessage {
 	sName?: string;
 	file?: string;
 	magic?: number;
-	options?: DhcpMessageType;
+	options?: DhcpMessageType
 }

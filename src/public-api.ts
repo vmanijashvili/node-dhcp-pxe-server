@@ -1,3 +1,3 @@
 export {DhcpServer} from "./lib/dhcp-server";
-export {Protocol} from "./lib/protocol";
+export {PxeServer} from "./lib/pxe-server";
 

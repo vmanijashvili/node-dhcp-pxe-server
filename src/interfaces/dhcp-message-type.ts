@@ -10,6 +10,7 @@ export interface DhcpMessageType {
 	vendorClassIdentifier?: string;
 	serverIdentifier?: string;
 	ipAddressLeaseTime?: number;
+	requestedIpAddress?: string;
 	subnetMask?: number;
 	routers?: string[];
 	domainNameServers?: string[];
