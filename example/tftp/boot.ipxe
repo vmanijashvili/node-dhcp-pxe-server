@@ -1,0 +1,6 @@
+#!ipxe
+
+kernel tftp://{ipAddress}/vmlinuz
+initrd tftp://{ipAddress}/initrd.img
+imgargs vmlinuz boot=live config hooks=filesystem username=live noeject fetch=tftp://{ipAddress}/filesystem.squashfs
+boot

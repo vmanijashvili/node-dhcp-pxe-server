@@ -45,7 +45,7 @@ export class DhcpRequest {
 	toPacket(): Buffer {
 
 
-		console.log("toPacket: ", this.messageData);
+		//console.log("toPacket: ", this.messageData);
 
 		let p = Buffer.alloc(1500);
 		let i = 0;
@@ -168,13 +168,13 @@ export class DhcpRequest {
 		}
 
 		p.writeUInt8(0xff, i++);
-		console.log("LENGTH: ", i);
+		//console.log("LENGTH: ", i);
 		p = p.slice(0, i);
-		console.log("LENGTH: ", i);
+		//console.log("LENGTH: ", i);
 
-		console.log("P:", p);
+		//console.log("P:", p);
 		//let parser = new DhcpMessageParser(p);
-		console.log("Send: ", this.messageData);
+		//console.log("Send: ", this.messageData);
 		return p;
 	}
 

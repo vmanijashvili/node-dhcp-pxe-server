@@ -9,13 +9,15 @@ export class DhcpServer extends EventEmitter {
 	socket: Socket;
 	proxyDhcpSocket: Socket;
 	port  = 67;
-	host = "192.168.1.10";
+	host = "";
 	proxyPort  = 4011;
-	proxyHost = "192.168.1.10";
+	proxyHost = "";
 
 
-	constructor() {
+	constructor(host: string) {
 		super();
+		this.host = host;
+		this.proxyHost = host;
 		this.socket = dgram.createSocket("udp4");
 		this.proxyDhcpSocket = dgram.createSocket("udp4");
 	}
@@ -26,8 +28,8 @@ export class DhcpServer extends EventEmitter {
 			this.socket.setBroadcast(true);
 			this.emit("bind");
 			this.socket.on('message', (msg: Buffer, rInfo: RemoteInfo) => {
-				console.log("MSG: ", msg);
-				console.log("rInfo: ", rInfo);
+				//console.log("MSG: ", msg);
+				//console.log("rInfo: ", rInfo);
 				this.emit("message", this.parse(msg), rInfo, msg);
 			});
 			callback();
@@ -36,8 +38,8 @@ export class DhcpServer extends EventEmitter {
 			this.socket.setTTL(64);
 			this.socket.setBroadcast(true);
 			this.proxyDhcpSocket.on('message', (msg: Buffer, rInfo: RemoteInfo) => {
-				console.log("MSG: ", msg);
-				console.log("rInfo: ", rInfo);
+				//console.log("MSG: ", msg);
+				//console.log("rInfo: ", rInfo);
 				this.emit("message", this.parse(msg), rInfo, msg);
 			});
 		});
@@ -54,12 +56,12 @@ export class DhcpServer extends EventEmitter {
 	send(message: DhcpRequest, port: number, address: string, callback = () => {}, direct=false) {
 		const pkt = message.toPacket();
 		if (direct) {
-			console.log("Direct Send ", address, port);
+			//console.log("Direct Send ", address, port);
 			this.socket.send(pkt, 0, pkt.length, port, address, () => {
 				callback();
 			});
 		} else {
-			console.log("Proxy Send ", address, port);
+			//console.log("Proxy Send ", address, port);
 			this.proxyDhcpSocket.send(pkt, 0, pkt.length, port, address, () => {
 				callback();
 			});

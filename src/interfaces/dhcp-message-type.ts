@@ -8,6 +8,7 @@ export interface DhcpMessageType {
 	clientSystemArchitecture?: number;
 	clientNetworkDeviceInterface?: Buffer;
 	vendorClassIdentifier?: string;
+	vendorClassInformation?: string;
 	serverIdentifier?: string;
 	ipAddressLeaseTime?: number;
 	requestedIpAddress?: string;

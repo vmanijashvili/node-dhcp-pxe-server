@@ -109,6 +109,11 @@ export class DhcpMessageParser {
 					this.message.options.vendorClassIdentifier = this.readString(msg, offset, len);
 					offset += len;
 				break;
+				case 77:
+					len = msg.readUInt8(offset++);
+					this.message.options.vendorClassInformation = this.readString(msg, offset, len);
+					offset += len;
+				break;
 				case 93: // Client System Architecture
 					len = msg.readUInt8(offset++);
 					this.message.options.clientSystemArchitecture = msg.readUInt16BE(offset);
