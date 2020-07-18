@@ -1,11 +1,30 @@
 {
   "name": "node-dhcp-pxe-server",
-  "version": "1.0.4",
+  "version": "1.0.5",
+  "_inBundle": false,
+  "_from": "node-dhcp-pxe-server@1.0.5",
+  "_id": "node-dhcp-pxe-server@1.0.5",
   "description": "Nodejs DHCP-PXE Server",
-  "main": "index.js",
+  "_location": "node-dhcp-pxe-server",
+  "main": "src/public-api.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "node-dhcp-pxe-server",
+    "name": "node-dhcp-pxe-server",
+    "escapedName": "node-dhcp-pxe-server",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_spec": "node-dhcp-pxe-server@^1.0.5",
+  "_resolved":"https://github.com/vmanijashvili/node-dhcp-pxe-server/releases/download/1.0.0/dist.zip",
   "repository": {
     "type": "git",
     "url": "https://github.com/vmanijashvili/node-dhcp-pxe-server.git"
