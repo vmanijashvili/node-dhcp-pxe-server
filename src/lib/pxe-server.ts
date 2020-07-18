@@ -5,8 +5,8 @@ import {EventEmitter} from "events";
 import {BootMessageType} from "../interfaces/boot-message-type";
 import {MessageType} from "../interfaces/message-type";
 import {DhcpRequest} from "./dhcp-request";
-import fs from "fs";
-import os from "os";
+import * as fs from 'fs';
+import * as os from "os";
 import {BootFlags} from "../interfaces/boot-tflags";
 import {PxeServerRequestResponse} from "../interfaces/pxe-server-request-response";
 
@@ -117,10 +117,10 @@ export class PxeServer extends EventEmitter {
 
 					)) {
 						console.log("Message: ", message);
-						fs.readFile(this.callbackCache[ipAddress].directory+"/"+this.callbackCache[ipAddress].loader, (error, data) => {
+						fs.readFile(this.callbackCache[ipAddress].directory+"/"+this.callbackCache[ipAddress].loader, (error:any, data:any) => {
 							let str = `${data}`;
 							str = str.replace(/{ipAddress}/g, ipAddress);
-							fs.writeFile(this.callbackCache[ipAddress].directory+"/loader-tmp.ipxe", str, (err) => {
+							fs.writeFile(this.callbackCache[ipAddress].directory+"/loader-tmp.ipxe", str, () => {
 								const size = fs.statSync(this.callbackCache[ipAddress].directory+"/loader-tmp.ipxe").size;
 								const request = new DhcpRequest({
 									bootMessageType: BootMessageType.BootReply,
