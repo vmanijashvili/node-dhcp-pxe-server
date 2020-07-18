@@ -4,7 +4,7 @@
 npm install @vmanijashvili/node-dhcp-pxe-server@1.0.0
 
 ### Usage
-Import `angular-editor` module
+Import `node-dhcp-pxe-server` module
 ```js
 import {PxeServer, DhcpMessage} from "node-dhcp-pxe-server";
 let server = new PxeServer();
