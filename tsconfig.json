@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "target": "es6",
     "module": "commonjs",
     "noImplicitAny": true,
@@ -14,6 +15,17 @@
   "include": [
     "src/**/*.ts",
     "example/**/*.ts"
-  ]
+  ],
+  "typeRoots": [
+    "node_modules/@types"
+  ],
+  "paths": {
+    "node-dhcp-pxe-server": [
+      "dist/"
+    ],
+    "node-dhcp-pxe-server/*": [
+      "dist/*"
+    ]
+  }
 
 }
