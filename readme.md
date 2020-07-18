@@ -1,7 +1,7 @@
 ### DHCP Server for PXE Boot loader
 
 ### Installation
-npm install @vmanijashvili/node-dhcp-pxe-server@1.0.0
+npm install @vmanijashvili/node-dhcp-pxe-server@1.0.3
 
 ### Usage
 Import `node-dhcp-pxe-server` module
